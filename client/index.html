@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Shayari Creator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI Shayari Creator</h1>
+
+        <div class="input-container">
+            <input type="text" id="keywordInput" placeholder="Enter a keyword and press enter"
+                onkeyup="handleKeyUp(event)">
+            <button id="generateButton" onclick="getShayari()">Generate Shayari</button>
+        </div>
+
+        <div class="shayari-container">
+            <div id="shayariResult"></div>
+            <button id="copyButton" onclick="copyShayari()">Copy</button>
+
+        </div>
+    </div>
+    <p style="position: absolute; bottom: 10px; right: 10px;">Developer : Raj Kumar Sen</p>
+
+    <script>
+        // JavaScript code to handle the API request and display the results
+        function getShayari() {
+            const keyword = document.getElementById('keywordInput').value;
+            const baseURL = "http://localhost:8000";
+
+            // Make an API request to the backend to get the shayari
+            // You can use Fetch or Axios to make the HTTP request
+
+            // Example using Fetch:
+            fetch(`${baseURL}/shayari?keyword=${keyword}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Display the shayari results on the page
+                    const shayariContainer = document.getElementById('shayariResult');
+                    shayariContainer.innerHTML = '';
+                    const shayariElement = document.createElement('div');
+                    shayariElement.className = 'shayari';
+                    shayariElement.innerText = data.shayari;
+                    shayariContainer.appendChild(shayariElement);
+                })
+                .catch(error => console.error(error));
+        }
+
+        // Function to handle the Enter key press event
+        function handleKeyUp(event) {
+            if (event.keyCode === 13) { // Check if Enter key is pressed
+                event.preventDefault(); // Prevent the default Enter key behavior
+
+                // Programmatically click the "Generate Shayari" button
+                document.getElementById('generateButton').click();
+            }
+        }
+        // Function to copy the shayari text
+        function copyShayari() {
+            const shayariText = document.getElementById('shayariResult').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = shayariText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Shayari copied!');
+        }
+
+    </script>
+</body>
+
+</html>
