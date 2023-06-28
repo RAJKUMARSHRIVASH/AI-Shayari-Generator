@@ -14,6 +14,7 @@
             <input type="text" id="keywordInput" placeholder="Enter a keyword and press enter"
                 onkeyup="handleKeyUp(event)">
             <button id="generateButton" onclick="getShayari()">Generate Shayari</button>
+            <div class="loader" id="loader"></div>
         </div>
 
         <div class="shayari-container">
@@ -29,6 +30,12 @@
         function getShayari() {
             const keyword = document.getElementById('keywordInput').value;
             const baseURL = "https://ai-shayari-generator.onrender.com";
+            const generateButton = document.getElementById('generateButton');
+            const loader = document.getElementById('loader');
+            // Show the loader
+            loader.style.display = 'inline-block';
+            // Disable the generate button while the fetch request is in progress
+            generateButton.disabled = true;
 
             // Make an API request to the backend to get the shayari
             // You can use Fetch or Axios to make the HTTP request
@@ -44,6 +51,12 @@
                     shayariElement.className = 'shayari';
                     shayariElement.innerText = data.shayari;
                     shayariContainer.appendChild(shayariElement);
+
+                    // Hide the loader
+                    loader.style.display = 'none';
+
+                    // Enable the generate button
+                    generateButton.disabled = false;
                 })
                 .catch(error => console.error(error));
         }
