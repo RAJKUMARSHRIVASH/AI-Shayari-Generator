@@ -66,9 +66,9 @@ To run this project, you will need to add the following environment variables to
 ```
 
 ## Demo
-
+```
 https://ai-shayari-generator.onrender.com
-
+```
 ## Screenshots
 
 ![App Screenshot](https://i.imgur.com/u8dHVPC.png)
