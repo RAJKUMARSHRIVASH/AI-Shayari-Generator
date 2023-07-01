@@ -1,11 +1,11 @@
 
 # AI Shayari/ quotes Generator
 
-This App is integrated to the chatGPT and is a AI Shayari generator, where user can write their keyword and get a ready made Shayari generated.
+This App is integrated into the ChatGPT and is an AI Shayari generator, where user can write their keyword and get a ready-made Shayari generated.
 
 ## Features
 
-- Cross platform
+- Cross-platform
 - Responsive
 
 ## Tech Stack
